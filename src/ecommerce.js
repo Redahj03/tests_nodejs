@@ -32,4 +32,12 @@ function testAddRemove() {
 function transactionAllowed(userAccount,priceToPay) {
   return userAccount.balance >= priceToPay;
 }
-module.exports = { Basket, addToBasket, removeFromBasket, testAddRemove, transactionAllowed}
+function  payBasket(userAccount,basket) {
+  if (transactionAllowed(userAccount,basket.totalPrice)) {
+    userAccount.balance -= basket.totalPrice;
+    return true;
+  }else{
+  return false;
+}
+}
+module.exports = { Basket, addToBasket, removeFromBasket, testAddRemove, transactionAllowed,payBasket}
